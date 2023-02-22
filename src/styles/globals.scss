@@ -1,3 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&family=Roboto:wght@500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.25;
+}
+
 html {
   font-size: 62.5%;
+}
+
+// global components
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 1.2rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 375px) {
+    padding: 2.4rem;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 2rem;
+
+  &--interactive-rating{
+    font-family: 'Overpass', sans-serif;
+    // background-color: hsl(216, 11%, 8%);
+    padding: 3rem 0;
+  }
 }
