@@ -1,8 +1,8 @@
-import React, { ComponentPropsWithRef, useEffect, useState } from "react"
-import styles from '@/styles/InteractiveRating.module.scss'
+import React, { ComponentPropsWithRef, MouseEvent, useCallback } from "react"
+import styles from 'src/components/InteractiveRating/InteractiveRating.module.scss'
 import Image from "next/image"
 
-import { RatingProvider, useRatings, useRatingsDispatch } from './ratingContext'
+import { RatingProvider, useRatings } from './RatingContext'
 
 type PropsInteractiveRating = {
   ratingNumber?: number,
@@ -102,9 +102,9 @@ function ButtonList( { className }: PropsButtonList) {
 
   const CustomStyle = className ? `${styles.ratingButtonList} ${className}` : styles.ratingButtonList
 
-  const selectedButton = (keyButton: number): void => {
+  const selectedButton = useCallback((keyButton: number) => {
     dispatch({ type: 'updateSelectedRatingByUser', payload: keyButton})
-  }
+    }, [dispatch])
 
   return (
     <div className={CustomStyle}>
@@ -112,11 +112,8 @@ function ButtonList( { className }: PropsButtonList) {
         ratingNumber && ratingNumber > 0
         ? buttonListValues.map(button => {
             return (
-              <Button key={button.id} className={`${button.isSelected ? styles.clickableButtonActive : ''}`} 
-                onClick={() => {
-                  selectedButton(button.id)
-                  }
-                }
+              <Button key={button.id} className={`${button.isSelected ? styles.clickableButtonActive : ''}`}
+                buttonId={button.id} selectedButton={selectedButton}
               >
                 {button.value}
               </Button>
@@ -128,10 +125,15 @@ function ButtonList( { className }: PropsButtonList) {
   )
 }
 
-function Button( {children, className, ...props }: ComponentPropsWithRef<"button">) {
+interface ButtonProps extends ComponentPropsWithRef<"button"> {
+  buttonId: number,
+  selectedButton(buttonId: number): void
+}
+
+function Button( {children, className, buttonId, selectedButton, ...props }: ButtonProps) {
   const CustomStyle = className ? `${styles.clickableButton} ${className}` : styles.clickableButton
 
   return (
-    <button className={CustomStyle} {...props}>{children}</button>
+    <button className={CustomStyle} {...props} onClick={() => selectedButton(buttonId)} >{children}</button>
   )
 }
