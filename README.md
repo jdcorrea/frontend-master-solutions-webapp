@@ -29,8 +29,9 @@ Following the NextJs scripts:
 - "lint": "next lint"
 
 - For new challenges:
-  - Create a new branch from main and then create a pull request once the challenge is completed.
-  - it's important to attach SS of lighthouse and axe tool reports to merge to main branch.
+  - Create a new branch from main "feature/challenge_
+  - Create a pull request once the challenge is completed.
+  - It's important to attach SS of lighthouse and axe tool reports to merge to main branch.
 
 
 Approach: 🚶
