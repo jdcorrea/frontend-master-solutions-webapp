@@ -28,6 +28,10 @@ Following the NextJs scripts:
 - "start": "next start",
 - "lint": "next lint"
 
+- For new challenges:
+  - Create a new branch from main and then create a pull request once the challenge is completed.
+  - it's important to attach SS of lighthouse and axe tool reports to merge to main branch.
+
 
 Approach: 🚶
 - Wanted to implement SCSS Modules fo styles because Styled Components looks like is having some issues with React 18 and it was an opportunity to improve knowledge in this area.
